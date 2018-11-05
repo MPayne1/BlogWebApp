@@ -11,8 +11,8 @@ namespace Coursework1.Models
         [Required, MaxLength(256), MinLength(2)]
         public string Post { get; set; }
 
-        
-        public Comment[] Comments { get; set; }
+        [Required, ScaffoldColumn(false), Key]
+        public int Id { get; set; }
 
         //public User Poster { get; set; }
     }

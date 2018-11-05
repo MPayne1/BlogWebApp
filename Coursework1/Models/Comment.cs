@@ -7,6 +7,12 @@ namespace Coursework1.Models
         [Required, MaxLength(256), MinLength(2)]
         public string CommentMessage { get; set; }
 
+        [Required, ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        [Required]
+        public virtual PostModel Post { get; set; }
+
         //public User Commenter { get; set; }
     }
 }
