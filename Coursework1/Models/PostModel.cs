@@ -15,5 +15,7 @@ namespace Coursework1.Models
         public int Id { get; set; }
 
         //public User Poster { get; set; }
+
+        //Need a view specific model for adding a post?
     }
 }
