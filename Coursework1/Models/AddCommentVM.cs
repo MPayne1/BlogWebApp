@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace Coursework1.Models
 {
-    public class PostModel
+    public class AddCommentVM
     {
         [Required, MaxLength(256), MinLength(2)]
-        public string Post { get; set; }
-
-        [Required, Key]
-        public int Id { get; set; }
-
-
-        //public virtual ApplicationUser UserId { get; set; }
+        public string CommentMessage { get; set; }
 
     }
 }

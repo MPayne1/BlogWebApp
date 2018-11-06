@@ -54,6 +54,21 @@ namespace Coursework1.Controllers
             }
             return View(postvm);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Comment(AddCommentVM comment, int? id)
+        {
+            Comment c = new Comment { CommentMessage = comment.CommentMessage };
+            _context.Comments.Add(c) ;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Comment(int? id)
+        {
+            return View(await _context.Comments.ToListAsync());
+        }
     }
 }
 

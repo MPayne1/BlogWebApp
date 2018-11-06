@@ -13,6 +13,7 @@ namespace Coursework1.Models
         [Required]
         public virtual PostModel Post { get; set; }
 
-        //public User Commenter { get; set; }
+        
+        //public virtual ApplicationUser UserId { get; set; }
     }
 }
