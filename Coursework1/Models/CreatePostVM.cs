@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace Coursework1.Models
 {
-    public class PostModel
+    public class CreatePostVM
     {
         [Required, MaxLength(256), MinLength(2)]
         public string Post { get; set; }
-
-        [Required, Key]
-        public int Id { get; set; }
-
-        //public User Poster { get; set; }
-
-        //Need a view specific model for adding a post?
     }
 }

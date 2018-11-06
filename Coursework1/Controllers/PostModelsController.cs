@@ -23,11 +23,8 @@ namespace Coursework1.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            Console.Write("post models index");
             return View(await _context.Post.ToListAsync());
         }
-
-
 
 
         // GET: PostModels/Create
@@ -41,18 +38,22 @@ namespace Coursework1.Controllers
         // POST: PostModels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        // Security stuff, santising user input ect.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Post")] PostModel postModel)
+        public  async Task<IActionResult> Create (CreatePostVM postvm)
         {
+           
             if (ModelState.IsValid)
             {
-                _context.Add(postModel);
+                PostModel post = new PostModel { Post = postvm.Post };
+                _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(postModel);
+            return View(postvm);
         }
-
     }
 }
+
