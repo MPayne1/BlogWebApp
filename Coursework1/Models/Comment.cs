@@ -4,7 +4,7 @@ namespace Coursework1.Models
 {
     public class Comment
     {
-        [Required, MaxLength(256), MinLength(2)]
+        [Required, MaxLength(256), MinLength(2), Display(Name = "Comment Message")]
         public string CommentMessage { get; set; }
 
         [Required, ScaffoldColumn(false)]
