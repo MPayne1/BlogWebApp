@@ -14,8 +14,8 @@ namespace Coursework1.Models
         [Required, Key]
         public int Id { get; set; }
 
+        //public User Poster { get; set; }
 
-        //public virtual ApplicationUser UserId { get; set; }
-
+        //Need a view specific model for adding a post?
     }
 }

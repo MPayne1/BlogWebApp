@@ -54,14 +54,12 @@ namespace Coursework1.Controllers
             }
             return View(postvm);
         }
+<<<<<<< HEAD
 
         [HttpPost]
-        public async Task<IActionResult> Comment(AddCommentVM comment, int? id)
+        public IActionResult Comment(AddCommentVM comment, int? id)
         {
-            Comment c = new Comment { CommentMessage = comment.CommentMessage };
-            _context.Comments.Add(c) ;
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("CreateComment", "Comment");
         }
 
         [HttpGet]
@@ -69,6 +67,8 @@ namespace Coursework1.Controllers
         {
             return View(await _context.Comments.ToListAsync());
         }
+=======
+>>>>>>> parent of 06eb4dc... trying to add comments
     }
 }
 

@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Comment" method="post">
+        <form asp-controller="Comment" asp-action="Comment" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CommentMessage" class="control-label"></label>
@@ -19,7 +19,7 @@
                 <span asp-validation-for="CommentMessage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-default" />
+                <input type="submit" value="CreateComment" class="btn btn-default" />
             </div>
         </form>
     </div>
