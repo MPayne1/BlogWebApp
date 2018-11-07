@@ -56,12 +56,9 @@ namespace Coursework1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Comment(AddCommentVM comment, int? id)
+        public IActionResult Comment(AddCommentVM comment, int? id)
         {
-            Comment c = new Comment { CommentMessage = comment.CommentMessage };
-            _context.Comments.Add(c) ;
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("CreateComment", "Comment");
         }
 
         [HttpGet]
