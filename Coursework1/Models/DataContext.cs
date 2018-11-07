@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Coursework1.Models
 {
-    public class DataContext : IdentityDbContext<ApplicationUser>
+    public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base (options)
         {
@@ -16,6 +16,6 @@ namespace Coursework1.Models
 
         public DbSet<PostModel> Post { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<ApplicationUser> Users { get; set; }
+        //public DbSet<ApplicationUser> Users { get; set; }
     }
 }

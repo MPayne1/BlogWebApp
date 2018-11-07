@@ -11,5 +11,7 @@ namespace Coursework1.Models
         [Required, MaxLength(256), MinLength(2)]
         public string CommentMessage { get; set; }
 
+        [Required]
+        public int PostId { get; set; }
     }
 }

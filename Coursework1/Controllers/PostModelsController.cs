@@ -54,21 +54,35 @@ namespace Coursework1.Controllers
             }
             return View(postvm);
         }
-<<<<<<< HEAD
+
 
         [HttpPost]
-        public IActionResult Comment(AddCommentVM comment, int? id)
+        public async Task<IActionResult> AddComment( int id, AddCommentVM comment)
         {
-            return RedirectToAction("CreateComment", "Comment");
+            if (ModelState.IsValid)
+            {
+                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = id };
+                _context.Add(c);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(comment);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Comment(int? id)
+        public IActionResult AddComment()
         {
-            return View(await _context.Comments.ToListAsync());
+            return View();
         }
-=======
->>>>>>> parent of 06eb4dc... trying to add comments
+
+        //All the comments for the post
+        [HttpGet]
+        public async Task<IActionResult> CommentsView(int? id)
+        {
+            ViewData["PostId"] = id;
+            return View(await _context.Comments.Where(c => c.PostId == id).ToListAsync());
+        }
+
     }
 }
 

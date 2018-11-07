@@ -43,22 +43,22 @@ namespace Coursework1.Controllers
         }
 
         // GET: Comment/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
             return View();
         }
 
-        // POST: Comment/Create
+        // POST: Comment/Create/1
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateComment(AddCommentVM comment)
+        public async Task<IActionResult> Create(AddCommentVM comment, int? id)
         {
             if (ModelState.IsValid)
             {
                 Comment c = new Comment(){ CommentMessage = comment.CommentMessage };
-                _context.Add(comment);
+                _context.Add(c);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

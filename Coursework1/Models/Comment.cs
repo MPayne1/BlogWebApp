@@ -11,7 +11,7 @@ namespace Coursework1.Models
         public int Id { get; set; }
 
         [Required]
-        public virtual PostModel Post { get; set; }
+        public virtual int PostId { get; set; }
 
         
         //public virtual ApplicationUser UserId { get; set; }
