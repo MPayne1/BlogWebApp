@@ -3,14 +3,16 @@ using Coursework1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Coursework1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181108113542_virtualPostModel")]
+    partial class virtualPostModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,11 @@ namespace Coursework1.Migrations
                         .IsRequired()
                         .HasMaxLength(256);
 
-                    b.Property<int>("PostId");
+                    b.Property<int>("PostIdId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PostIdId");
 
                     b.ToTable("Comments");
                 });
@@ -48,6 +52,14 @@ namespace Coursework1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Post");
+                });
+
+            modelBuilder.Entity("Coursework1.Models.Comment", b =>
+                {
+                    b.HasOne("Coursework1.Models.PostModel", "PostId")
+                        .WithMany()
+                        .HasForeignKey("PostIdId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

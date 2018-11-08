@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coursework1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Coursework1.Controllers
 {
+    
     public class PostModelsController : Controller
     {
         private readonly DataContext _context;
@@ -18,7 +20,7 @@ namespace Coursework1.Controllers
             _context = context;
         }
         
-
+        
         // GET: PostModels
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -61,7 +63,8 @@ namespace Coursework1.Controllers
         {
             if (ModelState.IsValid)
             {
-                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = id };
+                
+                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = id};
                 _context.Add(c);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -82,7 +85,6 @@ namespace Coursework1.Controllers
             ViewData["PostId"] = id;
             return View(await _context.Comments.Where(c => c.PostId == id).ToListAsync());
         }
-
     }
 }
 
