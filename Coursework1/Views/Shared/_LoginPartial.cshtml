@@ -5,7 +5,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "PostModels", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+    <form asp-controller="Account" asp-action="Logout" method="post" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
@@ -20,6 +20,6 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
     </ul>
 }

@@ -11,7 +11,7 @@ using AppContext = Coursework1.Models.AppDataContext;
 
 namespace Coursework1.Controllers
 {
-    
+    [Authorize]
     public class PostModelsController : Controller
     {
         private readonly AppDataContext _context;

@@ -19,10 +19,43 @@ namespace Coursework1.Controllers
             _signInManager = signInManager;
         }
 
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = vm.Email,
+                    Email = vm.Email
+                };
+                var result = await _signInManager.PasswordSignInAsync(user.Email, vm.Password, true, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "PostModels");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                    return View();
+                }
+            }
+            return View();
+            
+        }
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-
+           await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
 
