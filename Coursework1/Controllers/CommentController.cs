@@ -11,9 +11,9 @@ namespace Coursework1.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly DataContext _context;
+        private readonly AppDataContext _context;
 
-        public CommentController(DataContext context)
+        public CommentController(AppDataContext context)
         {
             _context = context;
         }

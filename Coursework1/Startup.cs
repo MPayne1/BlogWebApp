@@ -35,12 +35,13 @@ namespace Coursework1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<AppDataContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<DataContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDataContext>()
+                .AddDefaultTokenProviders();
                
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

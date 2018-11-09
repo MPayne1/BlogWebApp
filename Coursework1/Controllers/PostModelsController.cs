@@ -7,15 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coursework1.Models;
 using Microsoft.AspNetCore.Authorization;
+using AppContext = Coursework1.Models.AppDataContext;
 
 namespace Coursework1.Controllers
 {
     
     public class PostModelsController : Controller
     {
-        private readonly DataContext _context;
+        private readonly AppDataContext _context;
 
-        public PostModelsController(DataContext context)
+        public PostModelsController(AppDataContext context)
         {
             _context = context;
         }
