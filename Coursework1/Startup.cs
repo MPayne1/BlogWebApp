@@ -13,6 +13,7 @@ using Coursework1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Coursework1.Models;
+using Coursework1.Controllers;
 
 namespace Coursework1
 {
@@ -48,7 +49,7 @@ namespace Coursework1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, AppDataContext context)
         {
             if (env.IsDevelopment())
             {
@@ -66,6 +67,8 @@ namespace Coursework1
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            DbInitializer.Initialize(context, userManager);
 
             app.UseMvc(routes =>
             {
