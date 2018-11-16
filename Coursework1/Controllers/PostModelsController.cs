@@ -26,7 +26,14 @@ namespace Coursework1.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Post.ToListAsync());
+            List<ViewPostVM> vm = new List<ViewPostVM>();
+            List<PostModel> viewPosts = await _context.Post.ToListAsync();
+            foreach (PostModel post in viewPosts)
+            {
+                ViewPostVM temp = new ViewPostVM { Post = post.Post, Description = post.Description, Id = post.Id };
+                vm.Add(temp);
+            }
+            return View(vm);
         }
 
 
@@ -50,7 +57,7 @@ namespace Coursework1.Controllers
            
             if (ModelState.IsValid)
             {
-                PostModel post = new PostModel { Post = postvm.Post };
+                PostModel post = new PostModel { Post = postvm.Post , Description = postvm.Description};
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -73,11 +80,13 @@ namespace Coursework1.Controllers
             return View(comment);
         }
 
+
         [HttpGet]
         public IActionResult AddComment()
         {
             return View();
         }
+
 
         //All the comments for the post
         [HttpGet]
@@ -85,6 +94,15 @@ namespace Coursework1.Controllers
         {
             ViewData["PostId"] = id;
             return View(await _context.Comments.Where(c => c.PostId == id).ToListAsync());
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(ViewPostVM vm, int? id)
+        {
+            ViewData["Id"] = id;
+            Console.Write(id);
+            return View(await _context.Post.Where(c => c.Id == id).FirstOrDefaultAsync());
         }
     }
 }

@@ -10,5 +10,8 @@ namespace Coursework1.Models
     {
         [Required, MaxLength(256), MinLength(2)]
         public string Post { get; set; }
+        
+        [Required, MinLength(0), MaxLength(1024)]
+        public string Description { get; set; }
     }
 }

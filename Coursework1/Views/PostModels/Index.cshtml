@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Coursework1.Models.PostModel>
+﻿@model IEnumerable<Coursework1.Models.ViewPostVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,11 +22,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Post)
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Post)</a>
             </td>
             <td>
                 <a asp-action="CommentsView" asp-route-id="@item.Id">Comments</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
