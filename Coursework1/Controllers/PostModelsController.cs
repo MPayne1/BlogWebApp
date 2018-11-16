@@ -66,7 +66,6 @@ namespace Coursework1.Controllers
         }
 
         
-
         [HttpGet]
         public async Task<IActionResult> Details(ViewPostVM vm, int? id)
         {

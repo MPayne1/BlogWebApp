@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coursework1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Coursework1.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly AppDataContext _context;
@@ -45,7 +47,15 @@ namespace Coursework1.Controllers
         public async Task<IActionResult> CommentsView(int? id)
         {
             ViewData["PostId"] = id;
-            return View(await _context.Comments.Where(c => c.PostId == id).ToListAsync());
+
+            List<ViewCommentVM> vm = new List<ViewCommentVM>();
+            List<Comment> viewComments = await _context.Comments.Where(c => c.PostId == id).ToListAsync();
+            foreach (var comment in viewComments)
+            {
+                ViewCommentVM commentvm = new ViewCommentVM { CommentMessage = comment.CommentMessage };
+                vm.Add(commentvm);
+            }
+            return View(vm);
         }
 
     }

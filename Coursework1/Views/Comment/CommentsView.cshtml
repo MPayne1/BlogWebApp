@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Coursework1.Models.Comment>
+﻿@model IEnumerable<Coursework1.Models.ViewCommentVM>
 
 @{
     ViewData["Title"] = "Comments";
@@ -10,13 +10,7 @@
     <a asp-controller="Comment" asp-action="AddComment" asp-route-id="@ViewData["PostId"]">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CommentMessage)
-            </th>
-        </tr>
-    </thead>
+   
     <tbody>
         @foreach (var item in Model)
         {
