@@ -8,7 +8,7 @@ namespace Coursework1.Models
 {
     public class CreatePostVM
     {
-        [Required, MaxLength(256), MinLength(2)]
+        [Required, MaxLength(30), MinLength(2)]
         public string Post { get; set; }
         
         [Required, MinLength(0), MaxLength(1024)]

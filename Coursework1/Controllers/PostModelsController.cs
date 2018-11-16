@@ -28,7 +28,7 @@ namespace Coursework1.Controllers
         {
             List<ViewPostVM> vm = new List<ViewPostVM>();
             List<PostModel> viewPosts = await _context.Post.ToListAsync();
-            foreach (PostModel post in viewPosts)
+            foreach (var post in viewPosts)
             {
                 ViewPostVM temp = new ViewPostVM { Post = post.Post, Description = post.Description, Id = post.Id };
                 vm.Add(temp);
@@ -65,44 +65,15 @@ namespace Coursework1.Controllers
             return View(postvm);
         }
 
-
-        [HttpPost]
-        public async Task<IActionResult> AddComment( int id, AddCommentVM comment)
-        {
-            if (ModelState.IsValid)
-            {
-                
-                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = id};
-                _context.Add(c);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(comment);
-        }
-
-
-        [HttpGet]
-        public IActionResult AddComment()
-        {
-            return View();
-        }
-
-
-        //All the comments for the post
-        [HttpGet]
-        public async Task<IActionResult> CommentsView(int? id)
-        {
-            ViewData["PostId"] = id;
-            return View(await _context.Comments.Where(c => c.PostId == id).ToListAsync());
-        }
-
+        
 
         [HttpGet]
         public async Task<IActionResult> Details(ViewPostVM vm, int? id)
         {
             ViewData["Id"] = id;
-            Console.Write(id);
-            return View(await _context.Post.Where(c => c.Id == id).FirstOrDefaultAsync());
+            PostModel tempPost = await _context.Post.Where(c => c.Id == id).FirstOrDefaultAsync();
+            ViewPostVM postvm = new ViewPostVM { Post = tempPost.Post, Description = tempPost.Description, Id = tempPost.Id };
+            return View(postvm);
         }
     }
 }

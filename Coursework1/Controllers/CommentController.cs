@@ -18,51 +18,35 @@ namespace Coursework1.Controllers
             _context = context;
         }
 
-        // GET: Comment
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int id, AddCommentVM comment)
         {
-            return View(await _context.Comments.ToListAsync());
-        }
-
-        // GET: Comment/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
-            }
 
-            var comment = await _context.Comments
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (comment == null)
-            {
-                return NotFound();
+                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = id };
+                _context.Add(c);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "PostModels");
             }
-
             return View(comment);
         }
 
-        // GET: Comment/Create
-        public IActionResult Create(int id)
+
+        [HttpGet]
+        public IActionResult AddComment()
         {
             return View();
         }
 
-        // POST: Comment/Create/1
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AddCommentVM comment, int? id)
+
+        //All the comments for the post
+        [HttpGet]
+        public async Task<IActionResult> CommentsView(int? id)
         {
-            if (ModelState.IsValid)
-            {
-                Comment c = new Comment(){ CommentMessage = comment.CommentMessage };
-                _context.Add(c);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(comment);
+            ViewData["PostId"] = id;
+            return View(await _context.Comments.Where(c => c.PostId == id).ToListAsync());
         }
+
     }
 }
