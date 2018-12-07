@@ -19,6 +19,7 @@ namespace Coursework1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "canComment")]
         public async Task<IActionResult> AddComment(int id, AddCommentVM comment)
         {

@@ -34,6 +34,7 @@ namespace Coursework1.Controllers
         // Try to login the user, return error message if can't
         [AllowAnonymous]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM vm)
         {
             if (ModelState.IsValid)

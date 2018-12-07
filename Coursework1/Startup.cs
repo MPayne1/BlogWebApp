@@ -36,24 +36,19 @@ namespace Coursework1
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
             });
 
             services.AddDbContext<AppDataContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddRoles<IdentityRole>()
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDataContext>();
 
-               
-
-            services.AddMvc(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            })
+            services.AddMvc()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -74,9 +69,7 @@ namespace Coursework1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
-            
 
             DbInitializer.Initialize(context, userManager, serviceProvider).Wait();
             
