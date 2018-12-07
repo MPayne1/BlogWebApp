@@ -42,16 +42,23 @@ namespace Coursework1
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()  
-                .AddEntityFrameworkStores<AppDataContext>()
-                .AddDefaultTokenProviders();
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<AppDataContext>();
+
                
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, AppDataContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, AppDataContext context, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -69,8 +76,10 @@ namespace Coursework1
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            
 
-            DbInitializer.Initialize(context, userManager);
+            DbInitializer.Initialize(context, userManager, serviceProvider).Wait();
+            
 
             app.UseMvc(routes =>
             {

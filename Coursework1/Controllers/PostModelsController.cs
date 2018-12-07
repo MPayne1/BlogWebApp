@@ -15,7 +15,7 @@ namespace Coursework1.Controllers
     public class PostModelsController : Controller
     {
         private readonly AppDataContext _context;
-
+       
         public PostModelsController(AppDataContext context)
         {
             _context = context;
@@ -39,7 +39,7 @@ namespace Coursework1.Controllers
 
         // GET: PostModels/Create
         [HttpGet]
-       // [Authorize(Roles = "canPost")]
+        [Authorize(Roles = "canPost")]
         public IActionResult Create()
         {
             return View();
@@ -53,7 +53,7 @@ namespace Coursework1.Controllers
         // Security stuff, santising user input ect.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "canPost")]
+        [Authorize(Roles = "canPost")]
         public  async Task<IActionResult> Create (CreatePostVM postvm)
         {
            

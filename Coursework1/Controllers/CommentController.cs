@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coursework1.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +19,7 @@ namespace Coursework1.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "canComment")]
+        [Authorize(Roles = "canComment")]
         public async Task<IActionResult> AddComment(int id, AddCommentVM comment)
         {
             if (ModelState.IsValid)
@@ -37,7 +35,7 @@ namespace Coursework1.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "canComment")]
+        [Authorize(Roles = "canComment")]
         public IActionResult AddComment()
         {
             return View();
