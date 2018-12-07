@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Coursework1.Models;
 using Coursework1.Controllers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Coursework1
 {
@@ -40,7 +42,7 @@ namespace Coursework1
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()  
                 .AddEntityFrameworkStores<AppDataContext>()
                 .AddDefaultTokenProviders();
                

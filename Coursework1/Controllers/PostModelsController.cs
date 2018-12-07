@@ -39,6 +39,7 @@ namespace Coursework1.Controllers
 
         // GET: PostModels/Create
         [HttpGet]
+       // [Authorize(Roles = "canPost")]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +53,7 @@ namespace Coursework1.Controllers
         // Security stuff, santising user input ect.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "canPost")]
         public  async Task<IActionResult> Create (CreatePostVM postvm)
         {
            

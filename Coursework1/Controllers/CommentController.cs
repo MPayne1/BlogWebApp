@@ -21,6 +21,7 @@ namespace Coursework1.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = "canComment")]
         public async Task<IActionResult> AddComment(int id, AddCommentVM comment)
         {
             if (ModelState.IsValid)
@@ -36,6 +37,7 @@ namespace Coursework1.Controllers
 
 
         [HttpGet]
+        //[Authorize(Roles = "canComment")]
         public IActionResult AddComment()
         {
             return View();
@@ -57,6 +59,14 @@ namespace Coursework1.Controllers
             }
             return View(vm);
         }
+
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public  IActionResult AccessDenied()
+        //{
+        //    // do accessdenied page
+           
+        //}
 
     }
 }
