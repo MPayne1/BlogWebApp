@@ -30,7 +30,7 @@ namespace Coursework1.Controllers
             List<PostModel> viewPosts = await _context.Post.ToListAsync();
             foreach (var post in viewPosts)
             {
-                ViewPostVM temp = new ViewPostVM { Post = post.Post, Description = post.Description, Id = post.Id };
+                ViewPostVM temp = new ViewPostVM { Post = post.Post, Description = post.Description, PostId = post.PostId };
                 vm.Add(temp);
             }
             return View(vm);
@@ -72,8 +72,8 @@ namespace Coursework1.Controllers
         public async Task<IActionResult> Details(ViewPostVM vm, int? id)
         {
             ViewData["Id"] = id;
-            PostModel tempPost = await _context.Post.Where(c => c.Id == id).FirstOrDefaultAsync();
-            ViewPostVM postvm = new ViewPostVM { Post = tempPost.Post, Description = tempPost.Description, Id = tempPost.Id };
+            PostModel tempPost = await _context.Post.Where(c => c.PostId == id).FirstOrDefaultAsync();
+            ViewPostVM postvm = new ViewPostVM { Post = tempPost.Post, Description = tempPost.Description, PostId = tempPost.PostId };
             return View(postvm);
         }
     }

@@ -6,6 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\AppData\20181207112933_addingroles3.cs" />
+    <Compile Remove="Migrations\AppData\20181207112933_addingroles3.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210082307_virtualRelation.cs" />
+    <Compile Remove="Migrations\AppData\20181210082307_virtualRelation.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210082908_hopefullyfixed.cs" />
+    <Compile Remove="Migrations\AppData\20181210082908_hopefullyfixed.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210094646_newDb.cs" />
+    <Compile Remove="Migrations\AppData\20181210094646_newDb.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210095403_fixedhopefully.cs" />
+    <Compile Remove="Migrations\AppData\20181210095403_fixedhopefully.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210101257_fixedhopefully.cs" />
+    <Compile Remove="Migrations\AppData\20181210101257_fixedhopefully.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210122617_commentpostid5.cs" />
+    <Compile Remove="Migrations\AppData\20181210122617_commentpostid5.Designer.cs" />
+    <Compile Remove="Migrations\AppData\20181210123047_commentpostid5.cs" />
+    <Compile Remove="Migrations\AppData\20181210123047_commentpostid5.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AntiXSS" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />

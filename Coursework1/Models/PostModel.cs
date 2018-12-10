@@ -12,7 +12,7 @@ namespace Coursework1.Models
         public string Post { get; set; }
 
         [Required, Key]
-        public int Id { get; set; }
+        public int PostId { get; set; }
 
         [Required, MaxLength(1024)]
         public string Description { get; set; }

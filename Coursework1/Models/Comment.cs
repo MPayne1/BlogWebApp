@@ -7,13 +7,14 @@ namespace Coursework1.Models
         [Required, MaxLength(256), MinLength(2), Display(Name = "Comment Message")]
         public string CommentMessage { get; set; }
 
-        [Required]
+        [Required, Key]
         public int Id { get; set; }
 
         [Required]
         public int PostId { get; set; }
 
-        
-        //public virtual ApplicationUser UserId { get; set; }
+        //[Required]
+        //[Display(Name = "Commenter")]
+        //public virtual ApplicationUser  User{ get; set; }
     }
 }

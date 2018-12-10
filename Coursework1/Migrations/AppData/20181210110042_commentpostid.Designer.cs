@@ -4,14 +4,16 @@ using Coursework1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Coursework1.Migrations.AppData
 {
     [DbContext(typeof(AppDataContext))]
-    partial class AppDataContextModelSnapshot : ModelSnapshot
+    [Migration("20181210110042_commentpostid")]
+    partial class commentpostid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,23 +82,16 @@ namespace Coursework1.Migrations.AppData
                         .IsRequired()
                         .HasMaxLength(256);
 
-                    b.Property<int>("PostIdId");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<int>("PostId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PostIdId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Coursework1.Models.PostModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PostId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -108,7 +103,7 @@ namespace Coursework1.Migrations.AppData
                         .IsRequired()
                         .HasMaxLength(30);
 
-                    b.HasKey("Id");
+                    b.HasKey("PostId");
 
                     b.ToTable("Post");
                 });
@@ -221,19 +216,6 @@ namespace Coursework1.Migrations.AppData
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Coursework1.Models.Comment", b =>
-                {
-                    b.HasOne("Coursework1.Models.PostModel", "PostId")
-                        .WithMany()
-                        .HasForeignKey("PostIdId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Coursework1.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

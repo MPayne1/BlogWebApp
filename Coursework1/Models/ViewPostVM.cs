@@ -15,7 +15,7 @@ namespace Coursework1.Models
         public string Description { get; set; }
 
         [Required]
-        public int Id { get; set; }
+        public int PostId { get; set; }
 
     }
 }

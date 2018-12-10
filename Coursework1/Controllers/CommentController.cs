@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Coursework1.Models;
 using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace Coursework1.Controllers
 {
@@ -21,12 +22,12 @@ namespace Coursework1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canComment")]
-        public async Task<IActionResult> AddComment(int id, AddCommentVM comment)
+        public async Task<IActionResult> AddComment(int postId, AddCommentVM comment)
         {
             if (ModelState.IsValid)
             {
 
-                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = id };
+                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = postId};
                 _context.Add(c);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "PostModels");
@@ -45,15 +46,15 @@ namespace Coursework1.Controllers
 
         //All the comments for the post
         [HttpGet]
-        public async Task<IActionResult> CommentsView(int? id)
+        public async Task<IActionResult> CommentsView(int postId)
         {
-            ViewData["PostId"] = id;
-
+            ViewData["PostId"] = postId;
+            Console.WriteLine(postId);
             List<ViewCommentVM> vm = new List<ViewCommentVM>();
-            List<Comment> viewComments = await _context.Comments.Where(c => c.PostId == id).ToListAsync();
+            List<Comment> viewComments = await _context.Comments.Where(c => c.PostId == postId).ToListAsync();
             foreach (var comment in viewComments)
             {
-                ViewCommentVM commentvm = new ViewCommentVM { CommentMessage = comment.CommentMessage };
+                ViewCommentVM commentvm = new ViewCommentVM { CommentMessage = comment.CommentMessage};
                 vm.Add(commentvm);
             }
             return View(vm);
