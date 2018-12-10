@@ -11,7 +11,7 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Comment" asp-action="AddComment" method="post">
+        <form asp-controller="Comment" asp-action="AddComment" asp-route-postId="@ViewData["postId"]" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CommentMessage" class="control-label"></label>

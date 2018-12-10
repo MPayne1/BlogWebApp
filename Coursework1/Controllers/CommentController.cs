@@ -22,12 +22,13 @@ namespace Coursework1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canComment")]
-        public async Task<IActionResult> AddComment(int postId, AddCommentVM comment)
+        public async Task<IActionResult> AddComment(AddCommentVM comment)
         {
             if (ModelState.IsValid)
             {
-
-                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = postId};
+                Console.WriteLine("Addcomment post id");
+                Console.WriteLine(comment.postId);
+                Comment c = new Comment() { CommentMessage = comment.CommentMessage, PostId = comment.postId};
                 _context.Add(c);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "PostModels");
@@ -40,6 +41,7 @@ namespace Coursework1.Controllers
         [Authorize(Roles = "canComment")]
         public IActionResult AddComment()
         {
+            ViewData["postId"] = Request.Query["postId"];
             return View();
         }
 
