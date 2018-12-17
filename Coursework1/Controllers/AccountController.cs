@@ -46,7 +46,7 @@ namespace Coursework1.Controllers
                 };
                 var result = await signInManager.PasswordSignInAsync(user.Email, vm.Password, true, false);
                 if (result.Succeeded)
-                {
+                {   
                     return RedirectToAction("Index", "PostModels");
                 }
                 else

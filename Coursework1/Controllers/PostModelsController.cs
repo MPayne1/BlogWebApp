@@ -75,7 +75,14 @@ namespace Coursework1.Controllers
         }
 
 
-       
+
+        // GET: PostModels/Delete
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
     }
 }
 
