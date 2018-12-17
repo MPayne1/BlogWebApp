@@ -6,9 +6,13 @@
 
 <h2>Posts</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (ViewContext.HttpContext.User.IsInRole("canPost"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -19,16 +23,17 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.Post)</a>
-            </td>
-            <td>
-                <a asp-controller="Comment" asp-action="CommentsView" asp-route-postId="@item.PostId">Comments</a> |
-                <a asp-action="Delete" asp-route-postId="@item.PostId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.Post)</a>
+                </td>
+                <td>
+                    <a asp-controller="Comment" asp-action="CommentsView" asp-route-postId="@item.PostId">Comments</a> |
+                    <a asp-action="Delete" asp-route-postId="@item.PostId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

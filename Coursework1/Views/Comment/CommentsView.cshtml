@@ -5,12 +5,15 @@
 }
 
 <h2>Comments</h2>
+@if (ViewContext.HttpContext.User.IsInRole("canComment"))
+{
+    <p>
+        <a asp-controller="Comment" asp-action="AddComment" asp-route-postId="@ViewData["PostId"]">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-controller="Comment" asp-action="AddComment" asp-route-postId="@ViewData["PostId"]">Create New</a>
-</p>
 <table class="table">
-   
+
     <tbody>
         @foreach (var item in Model)
         {
@@ -24,7 +27,7 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
-        } 
+        }
     </tbody>
 </table>
 
