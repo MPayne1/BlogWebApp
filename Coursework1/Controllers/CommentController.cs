@@ -62,13 +62,7 @@ namespace Coursework1.Controllers
             return View(vm);
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public  IActionResult AccessDenied()
-        //{
-        //    // do accessdenied page
-           
-        //}
+       
 
     }
 }

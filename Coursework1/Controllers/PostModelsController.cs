@@ -47,9 +47,6 @@ namespace Coursework1.Controllers
 
 
         // POST: PostModels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-
         // Security stuff, santising user input ect.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,6 +73,9 @@ namespace Coursework1.Controllers
             ViewPostVM postvm = new ViewPostVM { Post = tempPost.Post, Description = tempPost.Description, PostId = tempPost.PostId };
             return View(postvm);
         }
+
+
+       
     }
 }
 
