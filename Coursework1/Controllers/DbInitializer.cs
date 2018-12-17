@@ -14,6 +14,7 @@ namespace Coursework1.Controllers
          
         public static readonly string canPostRole = "canPost";
         private static readonly string canCommentRole = "canComment";
+        private static readonly string canDeletePostRole = "canDeletePost";
         private static IServiceProvider serviceProvider;
         private static UserManager<ApplicationUser> userManager;
         private static AppDataContext context;
@@ -41,10 +42,12 @@ namespace Coursework1.Controllers
                     Email = "Member1@email.com",
                 };
                 var create = await userManager.CreateAsync(user, "Password123!");
-                CreateRoles(user.Id, canPostRole);
+                await CreateRoles(user.Id, canPostRole);
+                await CreateRoles(user.Id, canDeletePostRole);
             }
-            CreateRoles(seededUser.Id, canPostRole);
-         
+            await CreateRoles(seededUser.Id, canPostRole);
+            await CreateRoles(seededUser.Id, canDeletePostRole);
+
         }
 
         private static async Task CreateCustomers()

@@ -78,10 +78,22 @@ namespace Coursework1.Controllers
 
         // GET: PostModels/Delete
         [HttpGet]
+        [Authorize(Roles = "canDeletePost")]
         public IActionResult Delete()
         {
             return View();
         }
+
+
+
+        [HttpPost]
+        [Authorize(Roles = "canDeletePost")]
+        public IActionResult Delete(PostModel post)
+        {
+            _context.Remove(post);
+            return View();
+        }
+
 
     }
 }
