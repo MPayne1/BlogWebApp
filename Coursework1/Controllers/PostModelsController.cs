@@ -47,7 +47,6 @@ namespace Coursework1.Controllers
 
 
         // POST: PostModels/Create
-        // Security stuff, santising user input ect.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canPost")]
@@ -79,19 +78,28 @@ namespace Coursework1.Controllers
         // GET: PostModels/Delete
         [HttpGet]
         [Authorize(Roles = "canDeletePost")]
-        public IActionResult Delete()
+        public IActionResult Delete(ViewPostVM vm)
         {
-            return View();
+            return View(vm);
         }
 
 
-
+        // POST: PostModels/Delete
         [HttpPost]
         [Authorize(Roles = "canDeletePost")]
-        public IActionResult Delete(PostModel post)
-        {
-            _context.Remove(post);
-            return View();
+        public async Task<IActionResult> Delete(ViewPostVM pm, int? i)
+        {  
+            Console.WriteLine("postid query value:");
+            Console.WriteLine(pm.PostId);
+            Console.WriteLine(pm.Post);
+            var post = await _context.Post.Where(p => p.PostId == pm.PostId).FirstOrDefaultAsync();
+            if(post == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+             _context.Post.Remove(post);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "PostModels");
         }
 
 
