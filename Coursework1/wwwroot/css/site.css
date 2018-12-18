@@ -35,12 +35,6 @@ body {
         display: none;
     }
 }
-
-.navbar{
-    font-size:medium;
-
-}
-
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > thead > tr > td,
@@ -75,4 +69,5 @@ hr{
 
 .navbar {
     background-color: #2C3E50;
+    font-size: large;
 }
