@@ -71,3 +71,7 @@ hr{
     background-color: #2C3E50;
     font-size: large;
 }
+
+.navbar-inverse{
+    border-color: #ffffff;
+}
