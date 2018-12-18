@@ -31,9 +31,14 @@
                 </td>
                 <td>
                     <a asp-controller="Comment" asp-action="CommentsView" asp-route-postId="@item.PostId">Comments</a> |
-                    <a asp-action="Delete" asp-route-postId="@item.PostId">Delete</a>
+                    @if (ViewContext.HttpContext.User.IsInRole("canDeletePost"))
+                    {
+                     <a asp-action="Delete" ifp-route-postId="@item.PostId">Delete</a>
+                    }
+                   
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<hr id="postHr"/>

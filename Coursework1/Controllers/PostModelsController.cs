@@ -95,7 +95,7 @@ namespace Coursework1.Controllers
             var post = await _context.Post.Where(p => p.PostId == pm.PostId).FirstOrDefaultAsync();
             if(post == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "PostModels");
             }
              _context.Post.Remove(post);
             await _context.SaveChangesAsync();

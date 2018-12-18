@@ -35,3 +35,37 @@ body {
         display: none;
     }
 }
+
+.navbar{
+    font-size:medium;
+
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px dotted;
+}
+
+.table > thead > tr > th{
+    vertical-align: bottom;
+    border-bottom: 2px solid #9080806b;
+}
+
+
+.table {
+    margin-bottom: 0px;
+}
+
+#postHr {
+    margin-top: 0px;
+    border: none;
+    height: 2px;
+    color: #9080806b;
+    background-color: #9080806b;
+    color: #9080806b;
+}
