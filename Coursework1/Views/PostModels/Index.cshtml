@@ -31,7 +31,7 @@
                     <a asp-controller="Comment" asp-action="CommentsView" asp-route-postId="@item.PostId">Comments</a> |
                     @if (ViewContext.HttpContext.User.IsInRole("canDeletePost"))
                     {
-                     <a asp-action="Delete" asp-route-postId="@item.PostId">Delete</a>
+                        <a asp-action="Delete" asp-route-postId="@item.PostId">Delete</a>
                     }
                    
                 </td>

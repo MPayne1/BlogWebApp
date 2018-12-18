@@ -75,3 +75,11 @@ hr{
 .navbar-inverse{
     border-color: #ffffff;
 }
+
+a:hover {
+    background-color: #2C3E50;
+    color: #ffffff;
+    padding-bottom:2px;
+    border-radius:5px;
+    text-decoration:none;
+}
