@@ -58,14 +58,21 @@ body {
 
 
 .table {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
-#postHr {
-    margin-top: 0px;
+#postHr, #commentHr {
+    margin-top: 0;
     border: none;
     height: 2px;
     color: #9080806b;
     background-color: #9080806b;
-    color: #9080806b;
+}
+
+hr{
+    margin-bottom: 4px
+}
+
+.navbar {
+    background-color: #2C3E50;
 }
