@@ -85,5 +85,38 @@ a:hover {
 }
 
 meter {
+    /*for different browsers support*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 
+    margin: 0 auto 1em;
+    width: 100%;
+    height: 0.5em;
+
+
+    /* Just for Firefox */
+    background: none;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+meter::-webkit-meter-bar {
+    background: none;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+meter[value="0"] {
+    background: #ff0000;
+}
+meter[value="1"] {
+    background: orange
+}
+meter[value="2"] {
+    background: yellow;
+}
+    meter[value="3"] {
+        background: #a9ff00;
+    }
+meter[value="4"] {
+    background: green;
 }
