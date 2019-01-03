@@ -45,8 +45,6 @@ namespace Coursework1.Controllers
                 await CreateRoles(user.Id, canPostRole);
                 await CreateRoles(user.Id, canDeletePostRole);
             }
-            await CreateRoles(seededUser.Id, canPostRole);
-            await CreateRoles(seededUser.Id, canDeletePostRole);
 
         }
 
@@ -69,7 +67,6 @@ namespace Coursework1.Controllers
                     var create = await userManager.CreateAsync(user, "Password123!");
                     await CreateRoles(user.Id, canCommentRole);
                 }
-                await CreateRoles(seededUser.Id, canCommentRole);
             }
 
         }
