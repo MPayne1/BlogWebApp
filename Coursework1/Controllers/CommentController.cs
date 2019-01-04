@@ -19,6 +19,7 @@ namespace Coursework1.Controllers
             _context = context;
         }
 
+        // POST: Comment/AddComment
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canComment")]
@@ -36,7 +37,7 @@ namespace Coursework1.Controllers
             return View(comment);
         }
 
-
+        // GET: Comment/AddComment
         [HttpGet]
         [Authorize(Roles = "canComment")]
         public IActionResult AddComment()
@@ -47,6 +48,7 @@ namespace Coursework1.Controllers
 
 
         //All the comments for the post
+        // GET: Comment/CommentsView
         [HttpGet]
         public async Task<IActionResult> CommentsView(int postId)
         {
@@ -56,13 +58,35 @@ namespace Coursework1.Controllers
             List<Comment> viewComments = await _context.Comments.Where(c => c.PostId == postId).ToListAsync();
             foreach (var comment in viewComments)
             {
-                ViewCommentVM commentvm = new ViewCommentVM { CommentMessage = comment.CommentMessage};
+                ViewCommentVM commentvm = new ViewCommentVM { CommentMessage = comment.CommentMessage, Id = comment.Id};
                 vm.Add(commentvm);
             }
             return View(vm);
         }
 
-       
+        // GET: Comment/Delete
+        [HttpGet]
+        [Authorize(Roles = "canDeleteComment")]
+        public IActionResult Delete(ViewCommentVM vm)
+        {
+            return View(vm);
+        }
 
+
+        // POST: Comment/Delete
+        [HttpPost]
+        [Authorize(Roles = "canDeleteComment")]
+        public async Task<IActionResult> Delete(ViewCommentVM cm, int? i)
+        {
+            Console.WriteLine("Comment delete id" + cm.Id);
+            var comment = await _context.Comments.Where(c => c.Id == cm.Id).FirstOrDefaultAsync();
+            if(comment == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+             _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "PostModels");
+        } 
     }
 }

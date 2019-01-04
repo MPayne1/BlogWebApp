@@ -89,9 +89,6 @@ namespace Coursework1.Controllers
         [Authorize(Roles = "canDeletePost")]
         public async Task<IActionResult> Delete(ViewPostVM pm, int? i)
         {  
-            Console.WriteLine("postid query value:");
-            Console.WriteLine(pm.PostId);
-            Console.WriteLine(pm.Post);
             var post = await _context.Post.Where(p => p.PostId == pm.PostId).FirstOrDefaultAsync();
             if(post == null)
             {
