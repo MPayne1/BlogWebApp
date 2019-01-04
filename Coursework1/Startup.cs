@@ -44,7 +44,9 @@ namespace Coursework1
                     Configuration.GetConnectionString("DefaultConnection")));
 
 
-            services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>()
+            services.AddIdentity<ApplicationUser,IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDataContext>();
 
