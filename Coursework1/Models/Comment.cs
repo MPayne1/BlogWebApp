@@ -12,9 +12,5 @@ namespace Coursework1.Models
 
         [Required]
         public int PostId { get; set; }
-
-        //[Required]
-        //[Display(Name = "Commenter")]
-        //public virtual ApplicationUser  User{ get; set; }
     }
 }

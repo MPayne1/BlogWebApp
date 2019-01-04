@@ -11,7 +11,7 @@ namespace Coursework1.Controllers
 {
     public static class DbInitializer
     {
-         
+        // Role strings
         public static readonly string canPostRole = "canPost";
         private static readonly string canCommentRole = "canComment";
         private static readonly string canDeletePostRole = "canDeletePost";
@@ -31,7 +31,7 @@ namespace Coursework1.Controllers
             await CreateCustomers();
         }
 
-
+        // Create users if not already in db, with roles
         private static async Task CreateUsers()
         {
             var seededUser = await userManager.FindByEmailAsync("Member1@email.com");
@@ -51,6 +51,7 @@ namespace Coursework1.Controllers
             
         }
 
+        // Create customer if not already in db, with roles
         private static async Task CreateCustomers()
         {
             List<string> customers = SetupCustomerList();
@@ -74,7 +75,7 @@ namespace Coursework1.Controllers
 
         }
 
-      
+        // create roles if !exist
         private static async Task CreateRoles(string id, string role)
         {
 
@@ -104,7 +105,7 @@ namespace Coursework1.Controllers
         }
 
 
-
+        // list of customers 
         private static List<string> SetupCustomerList()
         {
             List<string> customers = new List<string>();

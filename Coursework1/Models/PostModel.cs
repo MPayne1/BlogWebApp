@@ -12,10 +12,5 @@ namespace Coursework1.Models
 
         [Required, MaxLength(1024)]
         public string Description { get; set; }
-
-
-        //public ApplicationUser Poster { get; set; }
-        // public DateTime dateTimePosted {get ; set;}
-
     }
 }

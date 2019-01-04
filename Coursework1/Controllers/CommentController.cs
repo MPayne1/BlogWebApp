@@ -75,6 +75,7 @@ namespace Coursework1.Controllers
 
         // POST: Comment/Delete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "canDeleteComment")]
         public async Task<IActionResult> Delete(ViewCommentVM cm, int? i)
         {

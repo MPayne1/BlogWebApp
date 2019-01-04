@@ -86,6 +86,7 @@ namespace Coursework1.Controllers
 
         // POST: PostModels/Delete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "canDeletePost")]
         public async Task<IActionResult> Delete(ViewPostVM pm, int? i)
         {  

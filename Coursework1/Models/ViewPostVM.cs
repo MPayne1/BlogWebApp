@@ -16,6 +16,5 @@ namespace Coursework1.Models
 
         [Required]
         public int PostId { get; set; }
-
     }
 }

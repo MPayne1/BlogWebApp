@@ -21,19 +21,19 @@ namespace Coursework1.Controllers
             signInManager = _signInManager;
         }
 
-        // GET Account/Login
+        // GET: Account/Login
         // Get the login view
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST Account/Login
-        // Try to login the user, return error message if can't
-        [AllowAnonymous]
+        // POST: Account/Login
+        // Try to login the user, return generic error message if can't
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM vm)
         {
@@ -60,7 +60,7 @@ namespace Coursework1.Controllers
         }
 
 
-        // GET Account/Register
+        // GET: Account/Register
         // get the register view
         [HttpGet]
         [AllowAnonymous]
@@ -70,9 +70,10 @@ namespace Coursework1.Controllers
         }
 
       
-        // POST Account/Register
+        // POST: Account/Register
         // Try to register the user, return error message if can't
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterVM vm)
         {
@@ -103,7 +104,7 @@ namespace Coursework1.Controllers
 
         }
 
-        //POST Account/Logout
+        // POST: Account/Logout
         //Logout the user, return them to the home view
         [HttpPost]
         public async Task<IActionResult> Logout()
