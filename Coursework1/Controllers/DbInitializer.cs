@@ -48,7 +48,7 @@ namespace Coursework1.Controllers
                 await CreateRoles(user.Id, canDeletePostRole);
                 await CreateRoles(user.Id, canDeleteCommentRole);
             }
-            await CreateRoles(seededUser.Id, canDeleteCommentRole);
+            
         }
 
         private static async Task CreateCustomers()
