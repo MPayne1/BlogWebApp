@@ -19,14 +19,12 @@ namespace Coursework1.Controllers
 
         private static IServiceProvider serviceProvider;
         private static UserManager<ApplicationUser> userManager;
-        private static AppDataContext context;
 
-        public static async Task Initialize (AppDataContext _context, UserManager<ApplicationUser> _userManager, IServiceProvider _serviceProvider)
+        public static async Task Initialize (UserManager<ApplicationUser> _userManager, IServiceProvider _serviceProvider)
         {
             serviceProvider = _serviceProvider;
             userManager = _userManager;
-            context = _context;
-
+         
             await CreateUsers();
             await CreateCustomers();
         }

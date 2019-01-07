@@ -73,7 +73,7 @@ namespace Coursework1
             app.UseCookiePolicy();
             app.UseAuthentication();
 
-            DbInitializer.Initialize(context, userManager, serviceProvider).Wait();
+            DbInitializer.Initialize(userManager, serviceProvider).Wait();
             
 
             app.UseMvc(routes =>
